@@ -80,7 +80,7 @@ fun ContentInicioView(it: PaddingValues, navController: NavController, viewModel
                         Text(text = it.fecha_lanzamiento.toString())
                         Text(text = it.genero)
                         IconButton(
-                            onClick = { navController.navigate("editar/${it.id}/${it.libro}/${it.autor},${it.fecha_lanzamiento}/${it.genero}")}
+                            onClick = { navController.navigate("editar/${it.id}/${it.libro}/${it.autor}/${it.fecha_lanzamiento}/${it.genero}")}
                         )
                         {
                             Icon(imageVector=Icons.Default.Edit, contentDescription="Editar")

@@ -65,15 +65,15 @@ fun EditarView(navController: NavController,viewModel: LibrosViewModel, id:Int, 
 @Composable
 fun ContentEditarView(it: PaddingValues,navController: NavController,viewModel: LibrosViewModel,id:Int, libro:String?, autor:String?, fecha_lanzamiento:Int, genero: String? ) {
     var libro by remember {
-        mutableStateOf("")
+        mutableStateOf(libro)
     }
     var autor by remember {
-        mutableStateOf("")
+        mutableStateOf(autor)
     }
-    var fecha_lanzamiento by remember { mutableStateOf(0) }
+    var fecha_lanzamiento by remember { mutableStateOf(fecha_lanzamiento) }
 
     var genero by remember {
-        mutableStateOf("")
+        mutableStateOf(genero)
     }
 
     Column(
@@ -83,14 +83,14 @@ fun ContentEditarView(it: PaddingValues,navController: NavController,viewModel: 
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        OutlinedTextField(value = libro , onValueChange = {libro =it},
+        OutlinedTextField(value = libro?:"" , onValueChange = {libro =it},
             label = { Text(text = "libro")},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 30.dp)
                 .padding(bottom = 15.dp)
         )
-        OutlinedTextField(value = autor , onValueChange = {autor =it},
+        OutlinedTextField(value = autor?:"" , onValueChange = {autor =it},
             label = { Text(text = "Autor")},
             modifier = Modifier
                 .fillMaxWidth()
@@ -112,7 +112,7 @@ fun ContentEditarView(it: PaddingValues,navController: NavController,viewModel: 
             textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.Start)
         )
         OutlinedTextField(
-            value = genero,
+            value = genero?:"",
             onValueChange = { genero = it },
             label = { Text(text = "Género") },
             modifier = Modifier
@@ -123,7 +123,7 @@ fun ContentEditarView(it: PaddingValues,navController: NavController,viewModel: 
 
         Button(onClick ={
 
-            val libro = Libros(id=id, libro = libro, autor = autor, fecha_lanzamiento = fecha_lanzamiento, genero = genero)
+            val libro = Libros(id=id, libro = libro!!, autor = autor!!, fecha_lanzamiento = fecha_lanzamiento, genero = genero!!)
 
             viewModel.actualizarLibro(libro)
             navController.popBackStack()
